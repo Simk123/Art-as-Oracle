@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "P22 Folk Art Cross", "DM Sans", sans-serif;
+  --font-extras: "P22 Folk Art Extras", sans-serif;
+  --font-stitch: "P22 Folk Art Stitch", sans-serif;
+  --font-block: "P22 Folk Art Block", sans-serif;
+}
+
+@font-face {
+  font-family: 'P22 Folk Art Cross';
+  src: url('/fonts/P22%20Folk%20Art%20W00%20Cross.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22 Folk Art Extras';
+  src: url('/fonts/P22%20Folk%20Art%20Extras%20Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22 Folk Art Stitch';
+  src: url('/fonts/P22%20Folk%20Art%20W01%20Stitch.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22 Folk Art Block';
+  src: url('/fonts/P22%20Folk%20Art%20W00%20Block.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Custom Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #44403c; /* stone-700 */
+    border-radius: 20px;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #44403c transparent;
+  }
+}
