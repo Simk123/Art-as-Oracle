@@ -2,7 +2,7 @@
 import { useEffect, useState, FC } from 'react';
 import { motion } from 'motion/react';
 import { Card as CardType } from '../types';
-import { fetchMetObject, MetObject } from '../services/met';
+import { fetchMetObject, searchMetObject, MetObject } from '../services/met';
 import { Loader2, ExternalLink } from 'lucide-react';
 
 interface CardProps {
@@ -25,7 +25,14 @@ const Card: FC<CardProps> = ({ card, index, onReveal }) => {
       setLoading(true);
       setError(false);
       try {
-        const data = await fetchMetObject(card.met_object_id);
+        // First try to search by title and artist to ensure we get the artwork Gemini is describing
+        let data = await searchMetObject(`${card.title} ${card.artist}`);
+        
+        // Fallback to the provided ID if search fails
+        if (!data) {
+          data = await fetchMetObject(card.met_object_id);
+        }
+
         if (mounted && data) {
           setImageUrl(data.primaryImageSmall || data.primaryImage);
           setObjectUrl(data.objectURL);
@@ -41,7 +48,7 @@ const Card: FC<CardProps> = ({ card, index, onReveal }) => {
     };
     loadImage();
     return () => { mounted = false; };
-  }, [card.met_object_id]);
+  }, [card.met_object_id, card.title, card.artist]);
 
   const handleFlip = () => {
     if (!isFlipped) {

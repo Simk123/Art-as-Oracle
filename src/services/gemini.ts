@@ -68,13 +68,13 @@ const READING_SCHEMA = {
 export async function generateReading(): Promise<Reading> {
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.1-pro-preview",
       contents: "Generate a new art reading.",
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
         responseMimeType: "application/json",
         responseSchema: READING_SCHEMA,
-        temperature: 0.9,
+        temperature: 0.7,
       },
     });
 
